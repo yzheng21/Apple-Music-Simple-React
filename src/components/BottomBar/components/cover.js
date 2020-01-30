@@ -18,21 +18,31 @@ const Container = styled.div`
     animation: ${props => (props.isClosing ? fadeOut : fadeIn)} 0.35s ease;
 `;
 
-const mapState
+const mapStateToProps = state => {
+    return {
+        navState: state.navState,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleFullscreen: () => dispatch(toggleFullscreen())
+    }
+}
 
 class Cover extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: true,
+            isOpen: props.navState.isFullscreen,
             isClosing: false
         }
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
         return {
-            isOpen: false,
-            isClosing: true,
+            isOpen: nextProps.navState.isFullscreen,
+            isClosing: !nextProps.navState.isFullscreen && prevState.isOpen,
         }
     }
 
@@ -63,4 +73,4 @@ class Cover extends Component {
     }
 }
 
-export default Cover;
+export default connect(mapStateToProps, mapDispatchToProps)(Cover);
