@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { toggleFullscreen, nextSong, pause, updateTime } from '../../../actions/index';
 import MiniControls from './min_controls';
+import Scrubber from './scrubber';
+import TrackButtons from './track_buttons';
+import TrackInfo from './track_info';
+import VolumeSlider from './volume_slider';
 
 const Container = styled.div`
     position: fixed;
@@ -146,7 +150,10 @@ class Controls extends Component {
                 </CloseControls>
                 <MiniControls />
                 <FullscreenControls hide={!isFullscreen}>
-                    
+                    <Scrubber />
+                    <TrackInfo />
+                    <TrackButtons />
+                    <VolumeSlider />
                 </FullscreenControls>
                 {
                     track && (
