@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { toggleFullscreen, nextSong, pause, updateTime } from '../../../actions/index';
+import MiniControls from './min_controls';
 
 const Container = styled.div`
     position: fixed;
@@ -143,7 +144,7 @@ class Controls extends Component {
                     onClick={this.props.toggleFullscreen}>
                     <Svg src="images/chevron_wide.svg"></Svg>
                 </CloseControls>
-                {/* <MiniControls /> */}
+                <MiniControls />
                 <FullscreenControls hide={!isFullscreen}>
                     
                 </FullscreenControls>
