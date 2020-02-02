@@ -6,6 +6,7 @@ import color from '../../../styles/color';
 import animation from '../../../styles/animate';
 
 const { fadeIn, fadeOut } = animation;
+
 const Container = styled.div`
     position: fixed;
     display: ${props => !props.isOpen && 'none'};

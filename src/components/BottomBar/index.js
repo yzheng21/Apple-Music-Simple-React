@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Cover from './components/cover';
+import Controls from './components/controls';
 
 const OuterContainer = styled.div`
    z-index: 50;
@@ -20,14 +21,22 @@ const OuterContainer = styled.div`
    }
 `;
 
+const mapStateToProps = state => {
+    return {
+        audioState: state.audioState,
+        navState: state.navState
+    }
+}
+
 class BottomBar extends Component {
     render() {
         return (
             <OuterContainer>
                 <Cover />
+                <Controls />
             </OuterContainer>
         );
     }
 }
 
-export default BottomBar;
+export default connect(mapStateToProps)(BottomBar);
