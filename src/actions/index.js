@@ -19,3 +19,9 @@ export const playSong = ({ playlist, index }) => {
  export const addToQueue = track => ({ type: 'ADD_TO_QUEUE', track });
  export const changeVolume = volume => ({ type: 'CHANGE_VOLUME', volume });
  export const updateTime = info => ({ type: 'UPDATE_TIME', info });
+
+//  view action
+export const pushView = view => ({ type: 'PUSH_VIEW', view });
+export const popView = () => ({ type: 'POP_VIEW' });
+export const pushPopup = popup => ({ type: 'PUSH_POPUP', popup });
+export const popPopup = () => ({ type: 'POP_POPUP' });
