@@ -39,13 +39,14 @@ const mapStateToProps = state => {
     return {
         viewState: state.viewState,
     };
- };
+};
  
  const ViewStack = connect(mapStateToProps)(({ stack, exiting }) => {
     return stack.map(({ name, props }, index) => {
         const View = Views[name];
         const secondFromTop = index !== stack.length - 1;
- 
+        const isShow = index === stack.length - 1;
+
         try {
             return (
                 <PageContainer
@@ -53,7 +54,7 @@ const mapStateToProps = state => {
                     secondFromTop={secondFromTop}
                     becomingTop={exiting && index === stack.length - 2}
                     exiting={exiting && index === stack.length - 1}>
-                    <View {...props} />
+                    {isShow && <View {...props} /> }
                 </PageContainer>
             );
         } catch (e) {

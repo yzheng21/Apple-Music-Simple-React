@@ -48,7 +48,7 @@ const TitleContainer = styled.div`
     position: absolute;
     margin-top: ${props =>
         (props.isBackButton && !props.exiting) || props.isHidden
-            ? '5px'
+            ? '4px'
             : '48px'};
     margin-left: ${props =>
         props.isHidden && !props.exiting ? '-100%' : '24px'};
@@ -133,7 +133,7 @@ const BackButton = connect(
         <ChevronContainer isShown={showChevron}>
             <Icon
                 name="chevron-left"
-                size={38}
+                size={30}
                 color={color.red[4]}
                 onClick={showChevron ? popView : null}
             />
