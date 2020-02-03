@@ -33,7 +33,8 @@ const ChevronContainer = styled.div`
     width: 40px;
     margin-left: -6px;
     opacity: ${props => (props.isShown ? 1 : 0)};
-    transform: ${props => props.isShown ? 'scale(1) translateX(0)' : 'scale(0) translateX(20px)'};
+    transform: ${props =>
+        props.isShown ? 'scale(1) translateX(0)' : 'scale(0) translateX(20px)'};
     transition: all 0.3s;
 
     &:active {
@@ -96,7 +97,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const TitleStack = connect(mapStateToProps)(({ stack, existing, onClick}) => {
+const TitleStack = connect(mapStateToProps)(({ stack, exiting, onClick }) => {
     return stack.map(({ name, title, props }, index) => {
         const isHidden = index < stack.length - 2;
         const isBackButton = index === stack.length - 2;
@@ -108,36 +109,36 @@ const TitleStack = connect(mapStateToProps)(({ stack, existing, onClick}) => {
                     key={`title-${name}`}
                     isHidden={isHidden}
                     isBackButton={isBackButton}
-                    existing={existing}
+                    exiting={exiting}
                     isTitle={isTitle}>
-                    {!props.hideTitle && (
-                        <Title onClick={() => (isBackButton ? onClick() : null)}>
-                            { title || name }
-                        </Title>
-                    )}
+                {!props.hideTitle && (
+                    <Title onClick={() => (isBackButton ? onClick() : null)}>
+                        {title || name}
+                    </Title>
+                )}
                 </TitleContainer>
             )
-        )
+        );
     });
 });
 
 const BackButton = connect(
-    mapStateToProps,
-    mapDispatchToProps,
+   mapStateToProps,
+   mapDispatchToProps,
 )(({ viewState, popView }) => {
     const { stack } = viewState;
     const showChevron = stack.length > 1;
 
     return (
-        <ChevronContainer>
-            <Icon 
+        <ChevronContainer isShown={showChevron}>
+            <Icon
                 name="chevron-left"
                 size={38}
                 color={color.red[4]}
                 onClick={showChevron ? popView : null}
             />
         </ChevronContainer>
-    )
+    );
 });
 
 class Header extends Component {
@@ -150,7 +151,7 @@ class Header extends Component {
             stack,
             hideTitle: props.hideTitle,
             newStack: null,
-            existing: false,
+            exiting: false,
         };
     }
 
@@ -178,7 +179,7 @@ class Header extends Component {
     }
 
     componentDidUpdate(nextProps, prevState) {
-        if (this.state.existing) {
+        if (this.state.exiting) {
             this.animateBack();
         }
     }
@@ -201,4 +202,7 @@ class Header extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps,
+)(Header);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { pushView } from '../../../actions';
 import Button from '../../../shared/button/index';
+import RecentlyPlayed from '../recent_played/index';
 
 const Container = styled.div`
    margin-top: 48px;
@@ -53,7 +54,7 @@ class LibraryView extends Component {
                         onClick={() => this.changeView('Playlists')}
                     />
                 </ButtonContainer>
-                {/* <RecentlyPlayed /> */}
+                <RecentlyPlayed />
             </Container>
         );
     }
