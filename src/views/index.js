@@ -4,6 +4,7 @@ import WelcomeBar from '../components/WelcomeBar';
 import BottomBar from '../components/BottomBar';
 import Header from '../components/Header/index';
 import ViewContainer from './view_container/index';
+import PopupContainer from '../shared/popups/index';
 
 const Container = styled.div`
     position: fixed;
@@ -22,6 +23,7 @@ class AppleMusic extends Component {
                 <WelcomeBar />
                 <Header />
                 <ViewContainer />
+                <PopupContainer />
                 <BottomBar />
             </Container>
                 

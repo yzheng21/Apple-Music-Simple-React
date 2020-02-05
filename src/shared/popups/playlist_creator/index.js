@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import color from '../../styles/color';
-import animation from '../../styles/animate';
-import { popPopup, pushView } from '../../actions/index';
+import color from '../../../styles/color';
+import animation from '../../../styles/animate';
+import { popPopup, pushView } from '../../../actions';
 
 const { slideInFromBottom, slideOutToBottom } = animation;
 

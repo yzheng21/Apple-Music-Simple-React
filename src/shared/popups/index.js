@@ -34,3 +34,57 @@ const PopupStack = connect(mapStateToProps)(({popupStack, closing}) => {
         }
     });
 });
+
+class PopupContainer extends Component {
+    constructor(props) {
+        super(props);
+        const { viewState } = props;
+        const { popupStack } = viewState;
+
+        this.state = {
+            popupStack,
+            closing: false,
+        };
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        const { viewState } = nextProps;
+        const { popupStack } = viewState;
+        const closing = popupStack.length < prevState.popupStack.length;
+  
+        return {
+            popupStack: closing ? prevState.popupStack : popupStack,
+            closing
+        }
+    }
+
+    animateClose() {
+        const { viewState } = this.props;
+        const { popupStack } = viewState;
+  
+        setTimeout(() => {
+            this.setState({
+                popupStack,
+                closing: false
+            });
+        }, 280);
+    }
+  
+    componentDidUpdate(nextProps, prevState) {
+        if (this.state.closing) {
+            this.animateClose();
+        }
+    }
+
+    render() {
+        const { popupStack, closing } = this.state;
+
+        return (
+            <Container>
+                <PopupStack popupStack={popupStack} closing={closing} />
+            </Container>
+        );
+    }
+}
+
+export default connect(mapStateToProps)(PopupContainer);
